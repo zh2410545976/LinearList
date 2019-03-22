@@ -14,24 +14,24 @@ void CreatList(SqList *&L, ElemType a[], int n)
 		L->data[i] = a[i];
 	L->length = n;
 }
-void InitList(SqList *&L)//³õÊ¼»¯ÏßĞÔ±í
+void InitList(SqList *&L)//åˆå§‹åŒ–çº¿æ€§è¡¨
 {
 	L = (SqList*)malloc(sizeof(SqList));
 	L->length = 0;
 }
-void DestroyList(SqList *&L)//Ïú»ÙÏßĞÔ±í
+void DestroyList(SqList *&L)//é”€æ¯çº¿æ€§è¡¨
 {
 	free(L);
 }
-bool ListEmpty(SqList *L)//ÅĞ¶ÏÏßĞÔ±íÊÇ·ñÎª¿Õ
+bool ListEmpty(SqList *L)//åˆ¤æ–­çº¿æ€§è¡¨æ˜¯å¦ä¸ºç©º
 {
 	return(L->length == 0);
 }
-int ListLength(SqList *L)//ÇóÏßĞÔ±íµÄ³¤¶È
+int ListLength(SqList *L)//æ±‚çº¿æ€§è¡¨çš„é•¿åº¦
 {
 	return(L->length);
 }
-void DispList(SqList *L)//Êä³öÏßĞÔ±í
+void DispList(SqList *L)//è¾“å‡ºçº¿æ€§è¡¨
 {
 	for (int i = 0; i < L->length; i++)
 	{
@@ -39,14 +39,14 @@ void DispList(SqList *L)//Êä³öÏßĞÔ±í
 	}
 	printf("\n");
 }
-bool GetElem(SqList *L, int i, ElemType &e)//ÇóÏßĞÔ±íµÚi¸öÔªËØÖµ
+bool GetElem(SqList *L, int i, ElemType &e)//æ±‚çº¿æ€§è¡¨ç¬¬iä¸ªå…ƒç´ å€¼
 {
 	if (i<1 || i>L->length)
 		return false;
 	e = L->data[i];
 	return true;
 }
-int LocateElem(SqList *L, ElemType e)//²éÕÒµÚÒ»¸öÖµÓòÎªeµÄÔªËØĞòºÅ
+int LocateElem(SqList *L, ElemType e)//æŸ¥æ‰¾ç¬¬ä¸€ä¸ªå€¼åŸŸä¸ºeçš„å…ƒç´ åºå·
 {
 	int i = 0;
 	while (i < L->length&&L->data[i] != e)
@@ -56,7 +56,7 @@ int LocateElem(SqList *L, ElemType e)//²éÕÒµÚÒ»¸öÖµÓòÎªeµÄÔªËØĞòºÅ
 	else
 		return i + 1;
 }
-bool ListInsert(SqList *&L, int i, ElemType e)//²åÈëµÚi¸öÔªËØ
+bool ListInsert(SqList *&L, int i, ElemType e)//æ’å…¥ç¬¬iä¸ªå…ƒç´ 
 {
 	int j;
 	if (i<1 || i>L->length + 1)
@@ -68,7 +68,7 @@ bool ListInsert(SqList *&L, int i, ElemType e)//²åÈëµÚi¸öÔªËØ
 	L->length++;
 	return true;
 }
-bool ListDelete(SqList *&L, int i, ElemType &e)//É¾³ıµÚi¸öÔªËØ
+bool ListDelete(SqList *&L, int i, ElemType &e)//åˆ é™¤ç¬¬iä¸ªå…ƒç´ 
 {
 	int j;
 	if (i<1 || i>L->length)
@@ -84,31 +84,31 @@ int main()
 {
 	SqList *L;
 	ElemType e;
-	printf("Ë³Ğò±íµÄ»ù±¾ÔËËãÈçÏÂ£º\n");
-	printf(" (1)³õÊ¼»¯Ë³Ğò±íL\n");
+	printf("é¡ºåºè¡¨çš„åŸºæœ¬è¿ç®—å¦‚ä¸‹ï¼š\n");
+	printf(" (1)åˆå§‹åŒ–é¡ºåºè¡¨L\n");
 	InitList(L);
-	printf(" (2)ÒÀ´Î²åÈëa,b,c,d,eÔªËØ\n");
+	printf(" (2)ä¾æ¬¡æ’å…¥a,b,c,d,eå…ƒç´ \n");
 	ListInsert(L, 1, 'a');
 	ListInsert(L, 2, 'b');
 	ListInsert(L, 3, 'c');
 	ListInsert(L, 4, 'd');
 	ListInsert(L, 5, 'e');
-	printf(" (3)Êä³öË³Ğò±íL:\n");
+	printf(" (3)è¾“å‡ºé¡ºåºè¡¨L:\n");
 	DispList(L);
-	printf(" (4)Ë³Ğò±íL³¤¶È£º%d\n", ListLength(L));
-	printf(" (5)Ë³Ğò±íLÎª%s\n", (ListEmpty(L) ? "¿Õ" : "·Ç¿Õ"));
+	printf(" (4)é¡ºåºè¡¨Lé•¿åº¦ï¼š%d\n", ListLength(L));
+	printf(" (5)é¡ºåºè¡¨Lä¸º%s\n", (ListEmpty(L) ? "ç©º" : "éç©º"));
 	GetElem(L, 3, e);
-	printf(" (6)Ë³Ğò±íLµÄµÚ3¸öÔªËØ£º%c\n", e);
-	printf(" (7)ÔªËØaµÄÎ»ÖÃ£º%d\n", LocateElem(L, 'a'));
-	printf(" (8)ÔÚµÚ4¸öÔªËØÎ»ÖÃÉÏ²åÈëfÔªËØ\n");
+	printf(" (6)é¡ºåºè¡¨Lçš„ç¬¬3ä¸ªå…ƒç´ ï¼š%c\n", e);
+	printf(" (7)å…ƒç´ açš„ä½ç½®ï¼š%d\n", LocateElem(L, 'a'));
+	printf(" (8)åœ¨ç¬¬4ä¸ªå…ƒç´ ä½ç½®ä¸Šæ’å…¥få…ƒç´ \n");
 	ListInsert(L, 4, 'f');
-	printf(" (9)Êä³öË³Ğò±íL:\n");
+	printf(" (9)è¾“å‡ºé¡ºåºè¡¨L:\n");
 	DispList(L);
-	printf(" (10)É¾³ıhµÄµÚ3¸öÔªËØ\n");
+	printf(" (10)åˆ é™¤hçš„ç¬¬3ä¸ªå…ƒç´ \n");
 	ListDelete(L, 3, e);
-	printf(" (11£©Êä³öË³Ğò±íL:\n");
+	printf(" (11ï¼‰è¾“å‡ºé¡ºåºè¡¨L:\n");
 	DispList(L);
-	printf(" (12)ÊÍ·ÅË³Ğò±íL\n");
+	printf(" (12)é‡Šæ”¾é¡ºåºè¡¨L\n");
 	DestroyList(L);
 	return 1;
 }
